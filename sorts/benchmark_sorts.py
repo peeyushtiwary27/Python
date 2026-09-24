@@ -20,15 +20,10 @@ re-implements a sort.
 
 import random
 import sys
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from itertools import pairwise
 from timeit import timeit
 from typing import Protocol
-
-
-class SortFunction(Protocol):
-    def __call__[T](self, collection: list[T], /) -> Sequence[T]: ...
-
 
 from sorts.bubble_sort import bubble_sort_iterative
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
@@ -41,6 +36,12 @@ from sorts.quick_sort import quick_sort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
 from sorts.tim_sort import tim_sort
+
+
+class SortFunction(Protocol):
+    def __call__[T](self, collection: list[T], /) -> Sequence[T]: ...
+
+
 
 # name -> callable.  Every callable accepts a list and returns the sorted list.
 SORTS: dict[str, SortFunction] = {
